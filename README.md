@@ -7,15 +7,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Login Registration Backend 
+# Posty Application 
 
-Complete login registration backend system using Spring Boot.
+Posting and comment app, bellow the feature of application:
 
 - [x] Login & Register
 - [x] Authentication & Verification
 - [x] Email verification with expiry
 - [x] Post
 - [x] Comment
+
+## Build and Dependencies
+
+- Laravel 8.0
+- Tailwindcss 2.0.3
+- Postgresql 13.1
 
 ## Contributing
 
