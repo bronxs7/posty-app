@@ -8,12 +8,24 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth'])->only(['store', 'destroy']);
+    }
+    
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->with(['user','likes'])->paginate(10); //Reduce wasted queries, eager loading method
+        $posts = Post::latest()->with(['user','likes'])->paginate(10); //Reduce wasted queries, eager loading method
 
         return view('posts.index', [
             'posts' => $posts
+        ]);
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post,
         ]);
     }
 
@@ -22,11 +34,6 @@ class PostController extends Controller
         $this->validate($request, [
             'body' => 'required'
         ]);
-
-        // Post::create([
-        //     'user_id' => auth()->id(),
-        //     'body' => $request->body
-        // ]);
 
         $request->user()->posts()->create($request->only('body'));
 
