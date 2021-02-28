@@ -7,11 +7,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('users/{user:username}', [UserProfileController::class, 'index'])->name('users.show');
+Route::get('users/posts/{user:username}', [UserProfileController::class, 'posts'])->name('users.myposts');
 
 Route::get('users/{user:username}/posts', [UserPostController::class, 'index'])->name('users.posts');
 
